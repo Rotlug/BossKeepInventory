@@ -8,6 +8,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
@@ -20,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(PlayerEntity.class)
 public abstract class PlayerDamageMixin {
     @Unique
-    private final TagKey<EntityType<?>> bossTag = TagKey.of(Registries.ENTITY_TYPE.getKey(), new Identifier("c", "bosses"));
+    public final TagKey<EntityType<?>> bossTag = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of("c", "bosses"));
 
     @Inject(method = "damage", at = @At("HEAD"))
     private void onDamageByBoss(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
