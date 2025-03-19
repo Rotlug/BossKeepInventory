@@ -28,8 +28,9 @@ public abstract class PlayerDamageMixin {
         if ((Object) this instanceof ServerPlayerEntity) {
             if (source.getAttacker() instanceof LivingEntity) {
                 String mobId = Registries.ENTITY_TYPE.getId(source.getAttacker().getType()).toString();
+                boolean isPartOfMod = ConfigManager.bossMobs.contains(mobId.split(":")[0] + ":*");
 
-                if (source.getAttacker().getType().isIn(bossTag) || ConfigManager.bossMobs.contains(mobId)) {
+                if (source.getAttacker().getType().isIn(bossTag) || ConfigManager.bossMobs.contains(mobId) || isPartOfMod) {
                     TickTimer.resetTimer();
                     TickTimer.start();
                     BossKeepInventory.setKeepInventory(true);
