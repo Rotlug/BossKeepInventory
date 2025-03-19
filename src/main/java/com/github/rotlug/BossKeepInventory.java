@@ -35,7 +35,10 @@ public class BossKeepInventory implements ModInitializer {
 		if (server != null) {
 			if (ConfigManager.debug) server.getPlayerManager().broadcast(Text.literal("Player Advantage " + (value ? "ON" : "OFF")), false);
 			server.getGameRules().get(GameRules.KEEP_INVENTORY).set(value, server);
-			server.getGameRules().get(GameRules.DO_MOB_SPAWNING).set(!value, server);
+
+			if (ConfigManager.disableMobSpawning) {
+				server.getGameRules().get(GameRules.DO_MOB_SPAWNING).set(!value, server);
+			}
 		}
 	}
 

@@ -17,21 +17,14 @@
 	"entrypoints": {
 		"main": [
 			"com.github.rotlug.BossKeepInventory"
-		],
-		"client": [
-			"com.github.rotlug.BossKeepInventoryClient"
 		]
 	},
 	"mixins": [
-		"boss-keep-inventory.mixins.json",
-		{
-			"config": "boss-keep-inventory.client.mixins.json",
-			"environment": "client"
-		}
+		"boss-keep-inventory.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.10",
-		"minecraft": "~1.21.1",
+		"minecraft": "1.21.1",
 		"java": ">=21",
 		"fabric-api": "*"
 	}
